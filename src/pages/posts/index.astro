@@ -1,0 +1,203 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { siteContent } from "../../data/site";
+
+const allPosts = (await getCollection("posts", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+const postCounts = {
+  en: allPosts.filter((post) => post.data.lang === "en").length,
+  pt: allPosts.filter((post) => post.data.lang === "pt").length
+};
+
+const baseUrl = import.meta.env.BASE_URL;
+
+const fmtDate = (date: Date, lang: "en" | "pt") =>
+  new Intl.DateTimeFormat(lang === "en" ? "en-US" : "pt-BR", {
+    day: "numeric",
+    month: "short",
+    year: "numeric"
+  }).format(date);
+---
+
+<BaseLayout title="Posts | Henrique Oelze" description="All posts by Henrique Oelze, filtered by language.">
+  <main class="page-shell archive-shell">
+    <div class="motion-grid"></div>
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+    <div class="ambient ambient-c"></div>
+    <div class="ambient ambient-d"></div>
+
+    <header class="topbar container">
+      <a class="brand" href={baseUrl}>Henrique Oelze</a>
+      <nav class="nav" aria-label="Primary">
+        <a href={baseUrl}>
+          <span data-lang="en">{siteContent.common.backHome.en}</span>
+          <span data-lang="pt" hidden>{siteContent.common.backHome.pt}</span>
+        </a>
+      </nav>
+      <div class="lang-switch" role="group" aria-label="Language selector">
+        <button class="lang-button is-active" type="button" data-lang-button="en" aria-pressed="true">EN</button>
+        <button class="lang-button" type="button" data-lang-button="pt" aria-pressed="false">PT</button>
+      </div>
+    </header>
+
+    <section class="section container reveal archive-hero">
+      <div class="section-heading">
+        <div class="section-divider" aria-hidden="true">
+          <span class="section-divider-line"></span>
+          <span class="section-divider-core"></span>
+          <span class="section-divider-line"></span>
+        </div>
+        <h1 class="archive-title" data-lang="en">{siteContent.posts.archiveTitle.en}</h1>
+        <h1 class="archive-title" data-lang="pt" hidden>{siteContent.posts.archiveTitle.pt}</h1>
+        <p class="section-intro" data-lang="en">{siteContent.posts.archiveIntro.en}</p>
+        <p class="section-intro" data-lang="pt" hidden>{siteContent.posts.archiveIntro.pt}</p>
+      </div>
+      <div class="section-actions">
+        <a class="button button-secondary" href={baseUrl}>
+          <span data-lang="en">{siteContent.common.backHome.en}</span>
+          <span data-lang="pt" hidden>{siteContent.common.backHome.pt}</span>
+        </a>
+      </div>
+      <div class="archive-tools">
+        <label class="archive-search-label" for="post-search">
+          <span data-lang="en">{siteContent.posts.searchLabel.en}</span>
+          <span data-lang="pt" hidden>{siteContent.posts.searchLabel.pt}</span>
+        </label>
+        <input
+          id="post-search"
+          class="archive-search"
+          type="search"
+          data-post-search
+          value=""
+          placeholder={siteContent.posts.searchPlaceholder.en}
+          data-placeholder-en={siteContent.posts.searchPlaceholder.en}
+          data-placeholder-pt={siteContent.posts.searchPlaceholder.pt}
+        />
+      </div>
+    </section>
+
+    <section class="section container reveal archive-content">
+      <div class="post-list archive-list">
+        {allPosts.map((post) => (
+          <article
+            class="post-card"
+            data-post-card
+            data-post-lang={post.data.lang}
+            data-post-search-text={`${post.data.title} ${post.data.description} ${post.data.tags.join(" ")}`.toLowerCase()}
+          >
+            <div class="post-meta">
+              <span>{fmtDate(post.data.date, post.data.lang)}</span>
+              <span>{post.data.lang.toUpperCase()}</span>
+            </div>
+            <h3>{post.data.title}</h3>
+            <p>{post.data.description}</p>
+            <div class="post-footer">
+              <div class="tag-row">
+                {post.data.tags.map((tag) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+              <a class="text-link" href={`${baseUrl}posts/${post.id}/`}>
+                {post.data.lang === "pt" ? siteContent.posts.readMore.pt : siteContent.posts.readMore.en}
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <p class="post-empty" data-post-empty="en" hidden={postCounts.en > 0}>
+        {siteContent.posts.empty.en}
+      </p>
+      <p class="post-empty" data-post-empty="pt" hidden={postCounts.pt > 0}>
+        {siteContent.posts.empty.pt}
+      </p>
+    </section>
+
+    <footer class="footer footer-centered container">
+      <p data-lang="en">{siteContent.footer.en}</p>
+      <p data-lang="pt" hidden>{siteContent.footer.pt}</p>
+    </footer>
+  </main>
+</BaseLayout>
+
+<script is:inline define:vars={{ postCounts }}>
+  const root = document.documentElement;
+  const buttons = Array.from(document.querySelectorAll("[data-lang-button]"));
+  const localizedNodes = document.querySelectorAll("[data-lang]");
+  const postCards = Array.from(document.querySelectorAll("[data-post-card]"));
+  const emptyStates = Array.from(document.querySelectorAll("[data-post-empty]"));
+  const searchInput = document.querySelector("[data-post-search]");
+
+  const applyPostFilter = (lang) => {
+    const term = (searchInput?.value ?? "").trim().toLowerCase();
+    let visibleCount = 0;
+
+    for (const card of postCards) {
+      const langMatch = card.dataset.postLang === lang;
+      const searchText = card.dataset.postSearchText ?? "";
+      const textMatch = term === "" || searchText.includes(term);
+      const isVisible = langMatch && textMatch;
+      card.hidden = !isVisible;
+      if (isVisible) visibleCount += 1;
+    }
+
+    for (const state of emptyStates) {
+      const stateLang = state.dataset.postEmpty;
+      state.hidden = stateLang !== lang || visibleCount > 0;
+    }
+  };
+
+  const switchLanguage = (lang) => {
+    root.dataset.lang = lang;
+
+    for (const node of localizedNodes) {
+      node.hidden = node.getAttribute("data-lang") !== lang;
+    }
+
+    for (const button of buttons) {
+      button.classList.toggle("is-active", button.getAttribute("data-lang-button") === lang);
+      button.setAttribute("aria-pressed", String(button.getAttribute("data-lang-button") === lang));
+    }
+
+    if (searchInput) {
+      searchInput.placeholder = lang === "pt" ? searchInput.dataset.placeholderPt ?? searchInput.placeholder : searchInput.dataset.placeholderEn ?? searchInput.placeholder;
+    }
+
+    applyPostFilter(lang);
+    localStorage.setItem("preferred-lang", lang);
+  };
+
+  const savedLang = localStorage.getItem("preferred-lang");
+  const initialLang = savedLang === "pt" ? "pt" : "en";
+  switchLanguage(initialLang);
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const lang = button.getAttribute("data-lang-button");
+      if (lang === "en" || lang === "pt") switchLanguage(lang);
+    });
+  });
+
+  searchInput?.addEventListener("input", () => {
+    const currentLang = root.dataset.lang === "pt" ? "pt" : "en";
+    applyPostFilter(currentLang);
+  });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      }
+    },
+    { threshold: 0.18 }
+  );
+
+  document.querySelectorAll(".reveal").forEach((node) => observer.observe(node));
+</script>

@@ -1,0 +1,62 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { siteContent } from "../../data/site";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const locale = post.data.lang === "pt" ? "pt-BR" : "en-US";
+const publishedAt = new Intl.DateTimeFormat(locale, {
+  day: "numeric",
+  month: "long",
+  year: "numeric"
+}).format(post.data.date);
+const homeHref = import.meta.env.BASE_URL;
+const postsHref = `${import.meta.env.BASE_URL}posts/`;
+---
+
+<BaseLayout title={`${post.data.title} | Henrique Oelze`} description={post.data.description}>
+  <main class="post-shell post-page-shell">
+    <div class="motion-grid"></div>
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+    <div class="ambient ambient-c"></div>
+    <div class="ambient ambient-d"></div>
+    <section class="post-page-content">
+      <article class="post-layout container">
+        <div class="back-links">
+          <a class="back-link" href={homeHref}>
+            {"<"} {post.data.lang === "pt" ? siteContent.common.backHome.pt : siteContent.common.backHome.en}
+          </a>
+          <a class="back-link" href={postsHref}>
+            {"<"} {post.data.lang === "pt" ? siteContent.common.backToPosts.pt : siteContent.common.backToPosts.en}
+          </a>
+        </div>
+        <header class="post-header">
+          <p class="post-date">{publishedAt} | {post.data.lang.toUpperCase()}</p>
+          <h1>{post.data.title}</h1>
+          <p class="post-description">{post.data.description}</p>
+          <div class="tag-row">
+            {post.data.tags.map((tag) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        </header>
+        <div class="prose">
+          <Content />
+        </div>
+      </article>
+    </section>
+    <footer class="footer footer-centered container">
+      <p>{post.data.lang === "pt" ? siteContent.footer.pt : siteContent.footer.en}</p>
+    </footer>
+  </main>
+</BaseLayout>
