@@ -136,6 +136,12 @@ class PostgresUserRepository(UserRepository):
         print("Saving to Postgres:", user)
 ```
 
+<div class="section-divider" aria-hidden="true">
+  <span class="section-divider-line"></span>
+  <span class="section-divider-core"></span>
+  <span class="section-divider-line"></span>
+</div>
+
 #### Wiring (composition root)
 ```python
 repo = PostgresUserRepository()
@@ -164,6 +170,12 @@ A common structure:
 The name is not the point.
 
 What matters is the direction of dependencies.
+
+<div class="section-divider" aria-hidden="true">
+  <span class="section-divider-line"></span>
+  <span class="section-divider-core"></span>
+  <span class="section-divider-line"></span>
+</div>
 
 ### “But wasn’t this already a thing?”
 
@@ -208,6 +220,12 @@ def test_create_user():
 
 No database. No framework. Fast.
 
+<div class="section-divider" aria-hidden="true">
+  <span class="section-divider-line"></span>
+  <span class="section-divider-core"></span>
+  <span class="section-divider-line"></span>
+</div>
+
 ### Challenges and trade-offs
 
 #### 1. Less DRY (by design)
@@ -230,6 +248,12 @@ In practice, concessions happen.
 
 And that is okay.
 
+<div class="section-divider" aria-hidden="true">
+  <span class="section-divider-line"></span>
+  <span class="section-divider-core"></span>
+  <span class="section-divider-line"></span>
+</div>
+
 ### Moving from theory to a practical case
 This talk/post was given after my team used Clean Architecture during a digital transformation process at a major Brazilian e-commerce company, where the system suffered from production issues and poor maintainability. After agreement with the client, we rewrote the system iteratively, using Clean Architecture as our guide. It was the first time the client had seen Clean Architecture. The numbers below were those at the time of the presentation, when both the client and the internal team already understood the value of what was happening.
 
@@ -243,6 +267,12 @@ At the time of the presentation (refactor still in progress):
 - Tests: 393
 - Test coverage: 100%
 
+<div class="section-divider" aria-hidden="true">
+  <span class="section-divider-line"></span>
+  <span class="section-divider-core"></span>
+  <span class="section-divider-line"></span>
+</div>
+
 ## Conclusion
 
 Clean Architecture is not a silver bullet.
@@ -255,6 +285,12 @@ from framework → to business rules
 In the end:
 
 Good architecture is the one that lets you evolve the system safely.
+
+<div class="section-divider" aria-hidden="true">
+  <span class="section-divider-line"></span>
+  <span class="section-divider-core"></span>
+  <span class="section-divider-line"></span>
+</div>
 
 ## References
 
