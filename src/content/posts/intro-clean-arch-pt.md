@@ -7,7 +7,7 @@ draft: false
 ---
 
 # Disclaimer
-Este post é uma versão em texto da apresentação feita por mim durante o DevDay 2017, na cidade de Belo Horizonte, Minas Gerais, Brasil. O conteúdo original pode ser assistido em Português no link: https://www.infoq.com/br/presentations/transformando-sua-arquitetura-com-clean-architecture/#downloadPdf/
+Este post é uma versão em texto da apresentação feita por mim durante o DevDay 2017, na cidade de Belo Horizonte, Minas Gerais, Brasil. O conteúdo original pode ser assistido em Português no link abaixo:
 
 <figure class="video-card">
   <a href="https://www.youtube.com/watch?v=Nsjsiz2A9mg" target="_blank" rel="noopener noreferrer">

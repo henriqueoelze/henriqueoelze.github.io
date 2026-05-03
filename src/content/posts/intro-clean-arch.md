@@ -8,7 +8,7 @@ tags: ["clean architecture", "architecture", "software"]
 ---
 
 # Disclaimer
-This post is a text version of the presentation I gave at DevDay 2017 in Belo Horizonte, Minas Gerais, Brazil. The original content can be watched in Portuguese at: https://www.infoq.com/br/presentations/transformando-sua-arquitetura-com-clean-architecture/#downloadPdf/
+This post is a text version of the presentation I gave at DevDay 2017 in Belo Horizonte, Minas Gerais, Brazil. The original content can be watched in Portuguese at the link below:
 
 <figure class="video-card">
   <a href="https://www.youtube.com/watch?v=Nsjsiz2A9mg" target="_blank" rel="noopener noreferrer">
