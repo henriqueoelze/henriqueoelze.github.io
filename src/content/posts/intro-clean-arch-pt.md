@@ -123,6 +123,12 @@ class CreateUser:
         return user
 ```
 
+<div class="section-divider" aria-hidden="true">
+  <span class="section-divider-line"></span>
+  <span class="section-divider-core"></span>
+  <span class="section-divider-line"></span>
+</div>
+
 ### Repare:
 
 O use case depende de uma interface
@@ -142,6 +148,12 @@ usecase = CreateUser(repo)
 
 usecase.execute("Henrique")
 ```
+
+<div class="section-divider" aria-hidden="true">
+  <span class="section-divider-line"></span>
+  <span class="section-divider-core"></span>
+  <span class="section-divider-line"></span>
+</div>
 
 ### O ponto importante
 
@@ -165,6 +177,12 @@ O nome pouco importa.
 
 O que importa é a direção das dependências.
 
+<div class="section-divider" aria-hidden="true">
+  <span class="section-divider-line"></span>
+  <span class="section-divider-core"></span>
+  <span class="section-divider-line"></span>
+</div>
+
 ### “Mas isso já não existia?”
 
 Sim.
@@ -178,6 +196,12 @@ Ideias como separação de responsabilidades já existiam em UML e outros modelo
 - Regras isoladas
 - Menos acoplamento
 - Maior clareza
+
+<div class="section-divider" aria-hidden="true">
+  <span class="section-divider-line"></span>
+  <span class="section-divider-core"></span>
+  <span class="section-divider-line"></span>
+</div>
 
 ## Em resumo: Clean Architecture não faz milagre
 
@@ -208,6 +232,12 @@ def test_create_user():
 
 Sem banco. Sem framework. Rápido.
 
+<div class="section-divider" aria-hidden="true">
+  <span class="section-divider-line"></span>
+  <span class="section-divider-core"></span>
+  <span class="section-divider-line"></span>
+</div>
+
 ### Desafios e trade-offs
 #### 1. Menos DRY (de propósito)
 
@@ -229,6 +259,12 @@ Na prática, concessões acontecem.
 
 E tudo bem.
 
+<div class="section-divider" aria-hidden="true">
+  <span class="section-divider-line"></span>
+  <span class="section-divider-core"></span>
+  <span class="section-divider-line"></span>
+</div>
+
 ### Saindo da teoria, indo para um caso prático
 Essa palestra/post foi dada após meu time usar de clean durante um processo de transformação digital de uma grande e-commerce brasileiro, onde o sistema sofria com problemas em produção e a falta mantenabilidade do mesmo. Após um acordo com o cliente, resolvemos reescrever o mesmo de forma iterativa, mas usando de clean arch para nos ajudar. Era a primeira vez do cliente vendo clean arch. Os números abaixo foram os números do momento da apresentação, quando tanto o cliente quanto todo o time interno já tinham compreendido o valor do que estava ocorrendo.
 
@@ -242,6 +278,12 @@ No momento da apresentação (refactor ainda não finalizado)
 - Número de testes: 393
 - Cobertura dos tests: 100%
 
+<div class="section-divider" aria-hidden="true">
+  <span class="section-divider-line"></span>
+  <span class="section-divider-core"></span>
+  <span class="section-divider-line"></span>
+</div>
+
 ## Conclusão
 
 Clean Architecture não é bala de prata.
@@ -254,6 +296,12 @@ de framework → para regras de negócio
 No fim:
 
 Arquitetura boa é a que te permite evoluir o sistema com segurança.
+
+<div class="section-divider" aria-hidden="true">
+  <span class="section-divider-line"></span>
+  <span class="section-divider-core"></span>
+  <span class="section-divider-line"></span>
+</div>
 
 ## Referências
 
