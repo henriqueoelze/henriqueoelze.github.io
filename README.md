@@ -1,6 +1,17 @@
 # Henrique Oelze Website
 
-Single-page personal website built with `Astro`, designed for GitHub Pages deployment.
+Personal online CV and portfolio site built with `Astro`.
+
+This repository powers a small public personal website with:
+
+- a homepage and bio section
+- a projects / portfolio highlights section
+- personal blog posts published from Markdown
+- a clean static frontend suitable for GitHub Pages
+
+## AI Disclaimer
+
+The frontend implementation of this site was created with the help of GitHub Copilot Codex. The repository and its contents are public, and the code reflects that assistance.
 
 ## Local development
 
@@ -19,11 +30,14 @@ npm run dev
 
 ## Content
 
-- Homepage copy and labels live in `src/data/site.ts`
-- Portfolio highlights live in `src/data/projects.ts`
-- Blog posts live in `src/content/posts/*.md`
-- Replace the portrait placeholder at `public/profile/henrique-photo.svg` with your real photo when ready
+This repo already includes:
+
+- site metadata and homepage copy in `src/data/site.ts`
+- portfolio and project highlights in `src/data/projects.ts`
+- blog posts as Markdown files in `src/content/posts/`
+- layout and page structure in `src/layouts/` and `src/pages/`
 
 ## Deployment
 
-The repo includes a GitHub Actions workflow at `.github/workflows/deploy.yml` that builds and publishes the static site to GitHub Pages.
+This project is configured for GitHub Pages deployment.
+The static site is built and published using the workflow at `.github/workflows/deploy.yml`.
