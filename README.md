@@ -4,7 +4,7 @@ Single-page personal website built with `Astro`, designed for GitHub Pages deplo
 
 ## Local development
 
-1. Install Node.js 20 or newer.
+1. Install Node.js 24 or newer.
 2. Install dependencies:
 
 ```bash
