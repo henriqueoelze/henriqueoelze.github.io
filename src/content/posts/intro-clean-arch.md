@@ -11,8 +11,8 @@ tags: ["clean architecture", "architecture", "software"]
 This post is a text version of the presentation I gave at DevDay 2017 in Belo Horizonte, Minas Gerais, Brazil. The original content can be watched in Portuguese at the link below:
 
 <figure class="video-card">
-  <a href="https://www.youtube.com/watch?v=Nsjsiz2A9mg" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.youtube.com/vi/Nsjsiz2A9mg/hqdefault.jpg" alt="Talk: Transforming Your Architecture with Clean Architecture" />
+  <a href="https://www.infoq.com/br/presentations/transformando-sua-arquitetura-com-clean-architecture/" target="_blank" rel="noopener noreferrer">
+    <img src="https://imgopt.infoq.com/fit-in/1288x0/filters:quality(80)/presentations/transformando-sua-arquitetura-com-clean-architecture/pt/slides/sl1-1524576318288.jpg" alt="Talk: Transforming Your Architecture with Clean Architecture" />
   </a>
   <figcaption>Talk: Transforming Your Architecture with Clean Architecture</figcaption>
 </figure>

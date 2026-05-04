@@ -10,8 +10,8 @@ draft: false
 Este post é uma versão em texto da apresentação feita por mim durante o DevDay 2017, na cidade de Belo Horizonte, Minas Gerais, Brasil. O conteúdo original pode ser assistido em Português no link abaixo:
 
 <figure class="video-card">
-  <a href="https://www.youtube.com/watch?v=Nsjsiz2A9mg" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.youtube.com/vi/Nsjsiz2A9mg/hqdefault.jpg" alt="Palestra: Transformando sua arquitetura com Clean Architecture" />
+  <a href="https://www.infoq.com/br/presentations/transformando-sua-arquitetura-com-clean-architecture/" target="_blank" rel="noopener noreferrer">
+    <img src="https://imgopt.infoq.com/fit-in/1288x0/filters:quality(80)/presentations/transformando-sua-arquitetura-com-clean-architecture/pt/slides/sl1-1524576318288.jpg" alt="Palestra: Transformando sua arquitetura com Clean Architecture" />
   </a>
   <figcaption>Palestra: Transformando sua arquitetura com Clean Architecture</figcaption>
 </figure>
